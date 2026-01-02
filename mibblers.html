@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIBBLERS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: #0a0a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', monospace;
+      overflow: hidden;
+    }
+    
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+    
+    .radial-glow {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .display-frame {
+      position: relative;
+      padding: 4px;
+      background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
+      background-size: 400% 400%;
+      animation: borderGlow 3s ease infinite;
+      clip-path: polygon(
+        0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px,
+        100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px)
+      );
+    }
+    
+    @keyframes borderGlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .display-inner {
+      background: #0a0a0f;
+      padding: 20px;
+      clip-path: polygon(
+        0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px,
+        100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px)
+      );
+    }
+    
+    .gif-wrapper {
+      position: relative;
+      width: 350px;
+      height: 420px;
+      overflow: hidden;
+    }
+    
+    .gif-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.1) saturate(1.2);
+    }
+    
+    .holo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.1) 25%,
+        transparent 50%,
+        rgba(255, 0, 255, 0.1) 75%,
+        transparent 100%
+      );
+      background-size: 200% 200%;
+      animation: holoShift 2s ease infinite;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+    
+    @keyframes holoShift {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+    
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+      );
+      pointer-events: none;
+      animation: scanMove 0.1s linear infinite;
+    }
+    
+    @keyframes scanMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 4px; }
+    }
+    
+    .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00ffff;
+      pointer-events: none;
+    }
+    .corner.tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
+    .corner.tr { top: -5px; right: -5px; border-left: none; border-bottom: none; }
+    .corner.bl { bottom: -5px; left: -5px; border-right: none; border-top: none; }
+    .corner.br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+    
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #00ffff;
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+      opacity: 0.6;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+    
+    .title {
+      font-size: 1rem;
+      letter-spacing: 0.5em;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+      animation: textPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes textPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .status-bar {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.7rem;
+      color: rgba(0, 255, 255, 0.7);
+      letter-spacing: 0.2em;
+    }
+    
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: #00ff00;
+      border-radius: 50%;
+      animation: blink 1s ease infinite;
+      box-shadow: 0 0 10px #00ff00;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    
+    .display-frame:hover .gif-wrapper img {
+      animation: glitch 0.3s ease;
+    }
+    
+    @keyframes glitch {
+      0% { transform: translate(0); filter: hue-rotate(0deg); }
+      20% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+      40% { transform: translate(2px, -2px); filter: hue-rotate(180deg); }
+      60% { transform: translate(-2px, -2px); filter: hue-rotate(270deg); }
+      80% { transform: translate(2px, 2px); filter: hue-rotate(360deg); }
+      100% { transform: translate(0); filter: hue-rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="radial-glow"></div>
+  
+  <div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+  </div>
+  
+  <div class="container">
+    <div class="title">NEURAL INTERFACE ACTIVE</div>
+    
+    <div class="display-frame">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      
+      <div class="display-inner">
+        <div class="gif-wrapper">
+          <img src="Mibblers.gif" alt="Mibblers">
+          <div class="holo-overlay"></div>
+          <div class="scanlines"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot"></div>
+        <span>SYSTEM ONLINE</span>
+      </div>
+      <div class="status-item">
+        <div class="status-dot" style="background: #00ffff; box-shadow: 0 0 10px #00ffff;"></div>
+        <span>QUANTUM SYNC</span>
+      </div>
+      <div class="status-item">
+        <div class="status-dot" style="background: #ff00ff; box-shadow: 0 0 10px #ff00ff;"></div>
+        <span>HOLO ACTIVE</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+**Step 2: File placement**
+
+Put both files in the same folder:
+```
+your-folder/
+  ├── mibblers.html
+  └── Mibblers.gif
