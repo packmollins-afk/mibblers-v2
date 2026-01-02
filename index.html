@@ -38,4 +38,95 @@
           <p>Mibblers are ready for order. Fill out the form below!</p>
         </div>
         <div id="unavailable" class="status unavailable" style="display: none;">
-          <div class="sta
+          <div class="status-badge unavailable-badge">Mibblers on Broadway are currently out!</div>
+          <div class="subscribe-section">
+            <h3>Get Notified</h3>
+            <p>Be the first to know when Mibblers are ready!</p>
+            <form id="subscribe-form" class="subscribe-form">
+              <input type="email" id="subscribe-email" placeholder="your@email.com" required>
+              <button type="submit" class="subscribe-btn">Notify Me</button>
+            </form>
+            <p id="subscribe-success" class="subscribe-success" style="display: none;">You're on the list!</p>
+          </div>
+        </div>
+      </div>
+      <form id="order-form" class="order-form" style="display: none;">
+        <h2>Place Your Order</h2>
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity *</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Delivery Address *</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="notes" rows="2" placeholder="Any special requests?"></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="submit-btn">Submit Order</button>
+      </form>
+      <div id="success-message" class="success-message" style="display: none;">
+        <div class="success-icon">&#10003;</div>
+        <h2>Order Received!</h2>
+        <p>Thanks for your order! We'll be in touch shortly to confirm details and arrange delivery.</p>
+        <button onclick="location.reload()" class="submit-btn">Place Another Order</button>
+      </div>
+      <div id="error-message" class="error-message" style="display: none;">
+        <p>Something went wrong. Please try again or contact us directly.</p>
+      </div>
+
+      <section id="about" class="content-section">
+        <h2>About Mibblers</h2>
+        <p>Born in the Bay Area, Mibblers is the original consistently dosed mushroom candy. Every batch is crafted for reliability - so you know exactly what you're getting, every time. Fun, light, and made with care in Northern California.</p>
+        <p>We started Mibblers because consistency matters. No guessing games, no surprises - just a dependable experience you can trust.</p>
+      </section>
+
+      <section id="product" class="content-section">
+        <h2>Our Product</h2>
+        <p>Mibblers are mushroom-infused candies designed for those who value precision and quality. Each piece is carefully dosed for a balanced, enjoyable experience - whether you're exploring microdosing or looking for something light and fun.</p>
+        <ul>
+          <li>Consistently dosed in every batch</li>
+          <li>Fresh baked in Northern California</li>
+          <li>The original - accept no imitations</li>
+        </ul>
+      </section>
+
+      <section id="faq" class="content-section">
+        <h2>Frequently Asked Questions</h2>
+        
+        <h3>What makes Mibblers different?</h3>
+        <p>Mibblers pioneered consistent dosing in mushroom candy. We measure precisely so every piece delivers the same experience. Many products on the market vary wildly batch to batch - Mibblers doesn't.</p>
+        
+        <h3>Where are Mibblers made?</h3>
+        <p>All Mibblers are crafted fresh in Northern California, in the San Francisco Bay Area where the brand was born.</p>
+        
+        <h3>How do I order?</h3>
+        <p>Use the order form on this page when Mibblers are available. We'll confirm your order and arrange local delivery.</p>
+        
+        <h3>Are there fake Mibblers?</h3>
+        <p>Unfortunately, yes. As the original Mibblers brand, we've seen imitators pop up. If you're not ordering from mibblers.shop, you're not getting the real thing.</p>
+      </section>
+    </main>
+    <div style="text-align: center; margin: 40px 0;">
+      <img src="trippy_bears_gg.gif" alt="Trippy dancing bears" style="width: 80%; max-width: 600px;">
+    </div>
+    <footer>
+      <p><a href="mwl.jpg">Made with love</a></p>
+    </footer>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
