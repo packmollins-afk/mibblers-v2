@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mibblers Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container admin-container">
+    <header>
+      <h1>Mibblers</h1>
+      <p class="tagline">Admin Panel</p>
+    </header>
+
+    <main>
+      <!-- Login Form -->
+      <div id="login-section" class="admin-card">
+        <h2>Login</h2>
+        <form id="login-form" class="login-form">
+          <input type="password" id="password" placeholder="Enter admin password" required>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p id="login-error" class="login-error" style="display: none;">Incorrect password</p>
+      </div>
+
+      <!-- Admin Controls (shown after login) -->
+      <div id="admin-controls" class="admin-card" style="display: none;">
+        <h2>Availability Control</h2>
+
+        <div class="current-status">
+          <span id="status-dot" class="status-dot"></span>
+          <span id="status-text">Loading...</span>
+        </div>
+
+        <div class="toggle-container">
+          <button id="toggle-btn" class="toggle-btn">Loading...</button>
+        </div>
+
+        <p style="color: #888; font-size: 0.9rem; margin-top: 1rem;">
+          Changes take effect immediately on the main site.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <p><a href="/" style="color: #8b4513;">View Main Site</a></p>
+    </footer>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>
