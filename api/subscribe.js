@@ -1,7 +1,12 @@
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+function getRedis() {
+  const url = process.env.REDIS_URL || process.env.KV_URL;
+  return new Redis(url);
+}
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -18,12 +23,16 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Email required' });
   }
 
+  const redis = getRedis();
+
   try {
     // Add to subscriber list in KV
-    const subscribers = await kv.get('mibblers_subscribers') || [];
+    const subscribersJson = await redis.get('mibblers_subscribers');
+    const subscribers = subscribersJson ? JSON.parse(subscribersJson) : [];
+
     if (!subscribers.includes(email)) {
       subscribers.push(email);
-      await kv.set('mibblers_subscribers', subscribers);
+      await redis.set('mibblers_subscribers', JSON.stringify(subscribers));
     }
 
     // Notify you of new subscriber
@@ -38,5 +47,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error subscribing:', error);
     return res.status(500).json({ error: 'Failed to subscribe' });
+  } finally {
+    redis.disconnect();
   }
 }
