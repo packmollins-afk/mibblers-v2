@@ -4,74 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mibblers | The Original Consistently Dosed Mushroom Candy</title>
-  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area.">
+  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area. Fun, light 
+    (or not), and reliably crafted everytime.">
   <meta name="keywords" content="Mibblers, mushroom candy, microdose, edibles, Bay Area, consistent dosing">
   <meta property="og:title" content="Mibblers | The Original Mushroom Candy">
   <meta property="og:description" content="The original mushroom candy from Northern California, Bay Area, San Francisco, Oakland.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://newpartyincoming.com">
-  <link rel="canonical" href="https://newpartyincoming.com">
+  <meta property="og:url" content="https://mibblers.shop">
+  <link rel="canonical" href="https://mibblers.shop">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
-  <style>
-    .gif-container {
-      text-align: center;
-      margin-top: 20px;
-      position: relative;
-    }
+</head>
+<body>
+  <div class="deco-circle deco-circle-1"></div>
+  <div class="deco-circle deco-circle-2"></div>
+  <div class="deco-circle deco-circle-3"></div>
+  <div class="container">
     
-    .display-frame {
-      position: relative;
-      display: inline-block;
-      padding: 4px;
-      background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
-      background-size: 400% 400%;
-      animation: borderGlow 3s ease infinite;
-      clip-path: polygon(
-        0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px,
-        100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px)
-      );
-    }
-    
-    @keyframes borderGlow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    .display-inner {
-      background: #0a0a0f;
-      padding: 15px;
-      clip-path: polygon(
-        0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px,
-        100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px)
-      );
-    }
-    
-    .gif-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-      overflow: hidden;
-    }
-    
-    .gif-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: contrast(1.1) saturate(1.2);
-    }
-    
-    .holo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.1) 25%, transparent 50%, rgba(255, 0, 255, 0.1) 75%, transparent 100%);
-      background-size: 200% 200%;
-      animation: holoShift 2s ease infinite;
-      pointer-events: none;
-      mix-blend-mode: overlay;
-    }
-    
-    @keyframes holoShift {
-      0%, 100% { background-position: 0% 0%; }
-      50% { background-position:
+    <div style="text-align: center; margin-top: 20px;">
+      <img src="mibbles.jpg" alt="Mibblers - The Original Mushroom Candy" style="width: 100%; max-width: 800px; border-radius: 12px;">
+    </div>
+    <header>
+      <h1 class="visually-hidden">Mibblers</h1>
+      <div class="logo-circle">
+        <p class="tagline">a
+      </div>
+    </header>
+    <main>
+      <div id="status-section" class="status-section">
+        <div id="loading" class="loading">Checking availability...</div>
+        <div id="available" class="status available" style="display: none;">
+          <div class="status-badge available-badge">Available Now!</div>
+          <p>Mibblers are ready for order. Fill out the form below!</p>
+        </div>
+        <div id="unavailable" class="status unavailable" style="display: none;">
+          <div class="status-badge unavailable-badge">Apologies, Mibbs are currently on back order.</div>
+          <div class="subscribe-section">
+            <h3>Get Notified</h3>
+            <form id="subscribe-form" class="subscribe-form">
+              <input type="email" id="subscribe-email" placeholder="your@email.com" required>
+              <button type="submit" class="subscribe-btn">Notify Me</button>
+            </form>
+            <p id="subscribe-success" class="subscribe-success" style="display: none;"> Hang in there, you're on the list. </p>
+          </div>
+        </div>
+      </div>
+      <form id="order-form" class="order-form" style="display: none;">
+        <h2>Place Your Order</h2>
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="quantity">Count *</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Pick Up or Ship*</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="notes">Other (optional)</label>
+          <textarea id="notes" name="notes" rows="2" placeholder="Any special requests?"></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="submit-btn">Submit Order</button>
+      </form>
+      <div id="success-message" class="success-message" style="display: none;">
+        <div class="success-icon">&#10003;</div>
+        <h2>Order Received!</h2>
+        <p>Thanks for your order! We'll be in touch shortly to confirm details.</p>
+        <button onclick="location.reload()" class="submit-btn">Place Another?</button>
+      </div>
+      <div id="error-message" class="error-message" style="display: none;">
+        <p>Something went wrong. Please try again or contact us directly.</p>
+      </div>
+    </main>
+    <footer>
+      <p><a href="/about.html">About</a> | <a href="mwl.jpg">Made with love</a></p>
+    </footer>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
