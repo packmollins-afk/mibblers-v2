@@ -9,13 +9,11 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <!-- Decorative circles -->
   <div class="deco-circle deco-circle-1"></div>
   <div class="deco-circle deco-circle-2"></div>
   <div class="deco-circle deco-circle-3"></div>
   <div class="container">
     
-    <!-- Hero image at top -->
     <div style="text-align: center; margin-top: 20px;">
       <img src="mibbles.jpg" alt="Mibbs" style="width: 100%; max-width: 800px; border-radius: 12px;">
     </div>
@@ -27,7 +25,6 @@
     </header>
 
     <main>
-      <!-- Availability Status -->
       <div id="status-section" class="status-section">
         <div id="loading" class="loading">Checking availability...</div>
 
@@ -39,7 +36,6 @@
         <div id="unavailable" class="status unavailable" style="display: none;">
           <div class="status-badge unavailable-badge">Mibblers on Broadway are currently out!</div>
 
-          <!-- Subscribe Section -->
           <div class="subscribe-section">
             <h3>Get Notified</h3>
             <p>Be the first to know when Mibblers are ready!</p>
@@ -52,7 +48,6 @@
         </div>
       </div>
 
-      <!-- Order Form (shown when available) -->
       <form id="order-form" class="order-form" style="display: none;">
         <h2>Place Your Order</h2>
 
@@ -89,7 +84,6 @@
         <button type="submit" id="submit-btn" class="submit-btn">Submit Order</button>
       </form>
 
-      <!-- Success Message -->
       <div id="success-message" class="success-message" style="display: none;">
         <div class="success-icon">&#10003;</div>
         <h2>Order Received!</h2>
@@ -97,13 +91,11 @@
         <button onclick="location.reload()" class="submit-btn">Place Another Order</button>
       </div>
 
-      <!-- Error Message -->
       <div id="error-message" class="error-message" style="display: none;">
         <p>Something went wrong. Please try again or contact us directly.</p>
       </div>
     </main>
 
-    <!-- Dancing bears gif moved to bottom -->
     <div style="text-align: center; margin: 40px 0;">
       <img src="trippy_bears_gg.gif" alt="Trippy dancing bears" style="width: 80%; max-width: 600px;">
     </div>
@@ -116,4 +108,3 @@
   <script src="/script.js"></script>
 </body>
 </html>
-```
