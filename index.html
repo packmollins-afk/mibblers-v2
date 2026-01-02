@@ -4,19 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mibblers | The Original Consistently Dosed Mushroom Candy</title>
-  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area. Fun, light 
-    (or not), and reliably crafted everytime.">
+  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area.">
   <meta name="keywords" content="Mibblers, mushroom candy, microdose, edibles, Bay Area, consistent dosing">
   <meta property="og:title" content="Mibblers | The Original Mushroom Candy">
   <meta property="og:description" content="The original mushroom candy from Northern California, Bay Area, San Francisco, Oakland.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mibblers.shop">
-  <link rel="canonical" href="https://mibblers.shop">
+  <meta property="og:url" content="https://newpartyincoming.com">
+  <link rel="canonical" href="https://newpartyincoming.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <style>
-    /* Futuristic GIF Display */
     .gif-container {
       text-align: center;
       margin-top: 20px;
@@ -54,4 +52,26 @@
       position: relative;
       width: 100%;
       max-width: 500px;
-      overflow: hid
+      overflow: hidden;
+    }
+    
+    .gif-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: contrast(1.1) saturate(1.2);
+    }
+    
+    .holo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.1) 25%, transparent 50%, rgba(255, 0, 255, 0.1) 75%, transparent 100%);
+      background-size: 200% 200%;
+      animation: holoShift 2s ease infinite;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+    
+    @keyframes holoShift {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position:
