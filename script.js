@@ -13,7 +13,7 @@ async function checkAvailability() {
   const orderForm = document.getElementById('order-form');
 
   try {
-    const response = await fetch('/api/availability');
+    const response = await fetch('/status.json');
     const data = await response.json();
 
     loading.style.display = 'none';
