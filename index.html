@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mibbs</title>
+  <title>Mibblers | The Original Consistently Dosed Mushroom Candy</title>
+  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area. Fun, light, and reliably crafted edibles. Order fresh from Northern CA.">
+  <meta name="keywords" content="Mibblers, mushroom candy, microdose, edibles, Bay Area, consistent dosing">
+  <meta property="og:title" content="Mibblers | The Original Mushroom Candy">
+  <meta property="og:description" content="Fun, light, and consistently dosed. The original mushroom candy from Northern California.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mibblers.shop">
+  <link rel="canonical" href="https://mibblers.shop">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
@@ -15,96 +22,25 @@
   <div class="container">
     
     <div style="text-align: center; margin-top: 20px;">
-      <img src="mibbles.jpg" alt="Mibbs" style="width: 100%; max-width: 800px; border-radius: 12px;">
+      <img src="mibbles.jpg" alt="Mibblers - The Original Mushroom Candy" style="width: 100%; max-width: 800px; border-radius: 12px;">
     </div>
-
     <header>
+      <h1 class="visually-hidden">Mibblers</h1>
       <div class="logo-circle">
         <p class="tagline">Northern CA fresh baked goodness</p>
       </div>
     </header>
-
     <main>
       <div id="status-section" class="status-section">
         <div id="loading" class="loading">Checking availability...</div>
-
         <div id="available" class="status available" style="display: none;">
           <div class="status-badge available-badge">Available Now!</div>
           <p>Mibblers are ready for order. Fill out the form below!</p>
         </div>
-
         <div id="unavailable" class="status unavailable" style="display: none;">
           <div class="status-badge unavailable-badge">Mibblers on Broadway are currently out!</div>
-
           <div class="subscribe-section">
             <h3>Get Notified</h3>
             <p>Be the first to know when Mibblers are ready!</p>
             <form id="subscribe-form" class="subscribe-form">
-              <input type="email" id="subscribe-email" placeholder="your@email.com" required>
-              <button type="submit" class="subscribe-btn">Notify Me</button>
-            </form>
-            <p id="subscribe-success" class="subscribe-success" style="display: none;">You're on the list!</p>
-          </div>
-        </div>
-      </div>
-
-      <form id="order-form" class="order-form" style="display: none;">
-        <h2>Place Your Order</h2>
-
-        <div class="form-group">
-          <label for="name">Name *</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone *</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email">
-        </div>
-
-        <div class="form-group">
-          <label for="quantity">Quantity *</label>
-          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
-        </div>
-
-        <div class="form-group">
-          <label for="address">Delivery Address *</label>
-          <textarea id="address" name="address" rows="3" required></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="notes">Notes (optional)</label>
-          <textarea id="notes" name="notes" rows="2" placeholder="Any special requests?"></textarea>
-        </div>
-
-        <button type="submit" id="submit-btn" class="submit-btn">Submit Order</button>
-      </form>
-
-      <div id="success-message" class="success-message" style="display: none;">
-        <div class="success-icon">&#10003;</div>
-        <h2>Order Received!</h2>
-        <p>Thanks for your order! We'll be in touch shortly to confirm details and arrange delivery.</p>
-        <button onclick="location.reload()" class="submit-btn">Place Another Order</button>
-      </div>
-
-      <div id="error-message" class="error-message" style="display: none;">
-        <p>Something went wrong. Please try again or contact us directly.</p>
-      </div>
-    </main>
-
-    <div style="text-align: center; margin: 40px 0;">
-      <img src="trippy_bears_gg.gif" alt="Trippy dancing bears" style="width: 80%; max-width: 600px;">
-    </div>
-
-    <footer>
-      <p><a href="mwl.jpg">Made with love</a></p>
-    </footer>
-  </div>
-
-  <script src="/script.js"></script>
-</body>
-</html>
+              <input type="email" id="subscribe-email" placehol
