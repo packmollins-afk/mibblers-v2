@@ -46,9 +46,44 @@ function setupLogin() {
 async function showAdminControls() {
   document.getElementById('login-section').style.display = 'none';
   document.getElementById('admin-controls').style.display = 'block';
+  document.getElementById('subscribers-section').style.display = 'block';
 
   await updateStatus();
+  await loadSubscribers();
   setupToggle();
+}
+
+async function loadSubscribers() {
+  const subscribersList = document.getElementById('subscribers-list');
+  const subscriberCount = document.getElementById('subscriber-count');
+
+  try {
+    const response = await fetch('/api/subscribe', {
+      headers: {
+        'Authorization': adminPassword
+      }
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const subscribers = data.subscribers || [];
+
+      if (subscribers.length === 0) {
+        subscribersList.innerHTML = '<p style="color: #888; font-style: italic;">No subscribers yet</p>';
+        subscriberCount.textContent = '';
+      } else {
+        subscribersList.innerHTML = subscribers
+          .map(email => `<div class="subscriber-item">${email}</div>`)
+          .join('');
+        subscriberCount.textContent = `Total: ${subscribers.length} subscriber${subscribers.length !== 1 ? 's' : ''}`;
+      }
+    } else {
+      subscribersList.innerHTML = '<p style="color: #ff6b6b;">Failed to load subscribers</p>';
+    }
+  } catch (error) {
+    console.error('Error loading subscribers:', error);
+    subscribersList.innerHTML = '<p style="color: #ff6b6b;">Error loading subscribers</p>';
+  }
 }
 
 async function updateStatus() {

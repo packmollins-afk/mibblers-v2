@@ -13,6 +13,26 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // GET - Fetch subscribers (admin only)
+  if (req.method === 'GET') {
+    const password = req.headers.authorization?.trim();
+    if (password !== 'broadway123') {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const redis = getRedis();
+    try {
+      const subscribersJson = await redis.get('mibblers_subscribers');
+      const subscribers = subscribersJson ? JSON.parse(subscribersJson) : [];
+      return res.status(200).json({ subscribers });
+    } catch (error) {
+      console.error('Error fetching subscribers:', error);
+      return res.status(500).json({ error: 'Failed to fetch subscribers' });
+    } finally {
+      redis.disconnect();
+    }
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
