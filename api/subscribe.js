@@ -33,6 +33,33 @@ export default async function handler(req, res) {
     }
   }
 
+  // DELETE - Remove subscriber (admin only)
+  if (req.method === 'DELETE') {
+    const password = req.headers.authorization?.trim();
+    if (password !== 'broadway123') {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email required' });
+    }
+
+    const redis = getRedis();
+    try {
+      const subscribersJson = await redis.get('mibblers_subscribers');
+      let subscribers = subscribersJson ? JSON.parse(subscribersJson) : [];
+      subscribers = subscribers.filter(e => e !== email);
+      await redis.set('mibblers_subscribers', JSON.stringify(subscribers));
+      return res.status(200).json({ success: true });
+    } catch (error) {
+      console.error('Error deleting subscriber:', error);
+      return res.status(500).json({ error: 'Failed to delete subscriber' });
+    } finally {
+      redis.disconnect();
+    }
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

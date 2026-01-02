@@ -73,9 +73,24 @@ async function loadSubscribers() {
         subscriberCount.textContent = '';
       } else {
         subscribersList.innerHTML = subscribers
-          .map(email => `<div class="subscriber-item">${email}</div>`)
+          .map(email => `
+            <div class="subscriber-item">
+              <span>${email}</span>
+              <button class="delete-subscriber" data-email="${email}" title="Remove subscriber">✕</button>
+            </div>
+          `)
           .join('');
         subscriberCount.textContent = `Total: ${subscribers.length} subscriber${subscribers.length !== 1 ? 's' : ''}`;
+
+        // Add delete handlers
+        document.querySelectorAll('.delete-subscriber').forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            const email = e.target.dataset.email;
+            if (confirm(`Remove ${email} from subscribers?`)) {
+              await deleteSubscriber(email);
+            }
+          });
+        });
       }
     } else {
       subscribersList.innerHTML = '<p style="color: #ff6b6b;">Failed to load subscribers</p>';
@@ -86,10 +101,33 @@ async function loadSubscribers() {
   }
 }
 
+async function deleteSubscriber(email) {
+  try {
+    const response = await fetch('/api/subscribe', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': adminPassword
+      },
+      body: JSON.stringify({ email })
+    });
+
+    if (response.ok) {
+      await loadSubscribers();
+    } else {
+      alert('Failed to remove subscriber');
+    }
+  } catch (error) {
+    console.error('Error deleting subscriber:', error);
+    alert('Error removing subscriber');
+  }
+}
+
 async function updateStatus() {
   const statusDot = document.getElementById('status-dot');
   const statusText = document.getElementById('status-text');
   const toggleBtn = document.getElementById('toggle-btn');
+  const messageSection = document.getElementById('message-section');
 
   try {
     const response = await fetch('/api/availability');
@@ -100,11 +138,13 @@ async function updateStatus() {
       statusText.textContent = 'Currently Available';
       toggleBtn.textContent = 'Mark as Sold Out';
       toggleBtn.className = 'toggle-btn make-unavailable';
+      messageSection.style.display = 'none';
     } else {
       statusDot.className = 'status-dot unavailable';
       statusText.textContent = 'Currently Unavailable';
       toggleBtn.textContent = 'Mark as Available';
       toggleBtn.className = 'toggle-btn make-available';
+      messageSection.style.display = 'block';
     }
   } catch (error) {
     statusText.textContent = 'Error loading status';
@@ -124,6 +164,9 @@ function setupToggle() {
       const statusResponse = await fetch('/api/availability');
       const statusData = await statusResponse.json();
 
+      // Get custom message if marking as available
+      const customMessage = document.getElementById('custom-message').value.trim();
+
       // Toggle it
       const response = await fetch('/api/availability', {
         method: 'POST',
@@ -131,11 +174,16 @@ function setupToggle() {
           'Content-Type': 'application/json',
           'Authorization': adminPassword
         },
-        body: JSON.stringify({ available: !statusData.available })
+        body: JSON.stringify({
+          available: !statusData.available,
+          message: customMessage || 'Fresh baked Mibblers are now available for order!'
+        })
       });
 
       if (response.ok) {
+        document.getElementById('custom-message').value = '';
         await updateStatus();
+        await loadSubscribers();
       } else {
         alert('Failed to update. Please try again.');
       }

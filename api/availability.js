@@ -37,7 +37,8 @@ export default async function handler(req, res) {
       }
 
       try {
-        const { available } = req.body;
+        const { available, message } = req.body;
+        const customMessage = message || 'Fresh baked Mibblers are now available for order!';
         const wasAvailable = await redis.get('mibblers_available');
         await redis.set('mibblers_available', available === true ? 'true' : 'false');
 
@@ -54,7 +55,7 @@ export default async function handler(req, res) {
               html: `
                 <div style="font-family: sans-serif; text-align: center; padding: 40px;">
                   <h1 style="color: #a855f7;">Mibblers are Ready!</h1>
-                  <p style="font-size: 18px; color: #555;">Fresh baked Mibblers are now available for order.</p>
+                  <p style="font-size: 18px; color: #555;">${customMessage}</p>
                   <a href="https://newpartyincoming.com" style="display: inline-block; background: linear-gradient(135deg, #ff6b6b, #feca57); color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 20px;">Order Now</a>
                   <p style="margin-top: 30px; color: #888; font-size: 14px;">Get them before they're gone!</p>
                 </div>
