@@ -23,9 +23,11 @@ export default async function handler(req, res) {
 
   // POST - Toggle availability (admin only)
   if (req.method === 'POST') {
-    const password = req.headers.authorization;
+    const password = req.headers.authorization?.trim();
+    const adminPass = process.env.ADMIN_PASSWORD?.trim();
 
-    if (password !== process.env.ADMIN_PASSWORD) {
+    if (!password || password !== adminPass) {
+      console.log('Auth failed. Got:', password, 'Expected:', adminPass);
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
