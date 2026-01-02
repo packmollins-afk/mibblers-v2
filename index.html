@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mibblers | The Original Consistently Dosed Mushroom Candy</title>
-  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area. Fun, light, and reliably crafted edibles. Order fresh from Northern CA.">
+  <meta name="description" content="Mibblers - the original consistently dosed mushroom candy from the Bay Area. Fun, light 
+    (or not), and reliably crafted everytime.">
   <meta name="keywords" content="Mibblers, mushroom candy, microdose, edibles, Bay Area, consistent dosing">
   <meta property="og:title" content="Mibblers | The Original Mushroom Candy">
-  <meta property="og:description" content="Fun, light, and consistently dosed. The original mushroom candy from Northern California.">
+  <meta property="og:description" content="The original mushroom candy from Northern California, Bay Area, San Francisco, Oakland.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mibblers.shop">
   <link rel="canonical" href="https://mibblers.shop">
@@ -27,7 +28,7 @@
     <header>
       <h1 class="visually-hidden">Mibblers</h1>
       <div class="logo-circle">
-        <p class="tagline">Northern CA fresh baked goodness</p>
+        <p class="tagline">😫/p>
       </div>
     </header>
     <main>
@@ -38,7 +39,7 @@
           <p>Mibblers are ready for order. Fill out the form below!</p>
         </div>
         <div id="unavailable" class="status unavailable" style="display: none;">
-          <div class="status-badge unavailable-badge">Mibblers on Broadway are currently out!</div>
+          <div class="status-badge unavailable-badge">Apologies, Mibblers are currently on back order.</div>
           <div class="subscribe-section">
             <h3>Get Notified</h3>
             <p>Be the first to know when Mibblers are ready!</p>
@@ -46,7 +47,7 @@
               <input type="email" id="subscribe-email" placeholder="your@email.com" required>
               <button type="submit" class="subscribe-btn">Notify Me</button>
             </form>
-            <p id="subscribe-success" class="subscribe-success" style="display: none;">You're on the list!</p>
+            <p id="subscribe-success" class="subscribe-success" style="display: none;"> Hang in there, you're on the list. </p>
           </div>
         </div>
       </div>
@@ -65,15 +66,15 @@
           <input type="email" id="email" name="email">
         </div>
         <div class="form-group">
-          <label for="quantity">Quantity *</label>
+          <label for="quantity">Count *</label>
           <input type="number" id="quantity" name="quantity" min="1" value="1" required>
         </div>
         <div class="form-group">
-          <label for="address">Delivery Address *</label>
+          <label for="address">Pick Up or Ship*</label>
           <textarea id="address" name="address" rows="3" required></textarea>
         </div>
         <div class="form-group">
-          <label for="notes">Notes (optional)</label>
+          <label for="notes">Other (optional)</label>
           <textarea id="notes" name="notes" rows="2" placeholder="Any special requests?"></textarea>
         </div>
         <button type="submit" id="submit-btn" class="submit-btn">Submit Order</button>
@@ -81,8 +82,8 @@
       <div id="success-message" class="success-message" style="display: none;">
         <div class="success-icon">&#10003;</div>
         <h2>Order Received!</h2>
-        <p>Thanks for your order! We'll be in touch shortly to confirm details and arrange delivery.</p>
-        <button onclick="location.reload()" class="submit-btn">Place Another Order</button>
+        <p>Thanks for your order! We'll be in touch shortly to confirm details.</p>
+        <button onclick="location.reload()" class="submit-btn">Place Another?</button>
       </div>
       <div id="error-message" class="error-message" style="display: none;">
         <p>Something went wrong. Please try again or contact us directly.</p>
