@@ -1,12 +1,173 @@
+/* ============================================
+   MIBBLERS DESIGN SYSTEM
+   A cohesive animation system built on rhythm
+   ============================================ */
+
+/* Animation Tokens - The DNA of motion */
+:root {
+  /* Timing Scale - fibonacci-inspired for natural rhythm */
+  --duration-flash: 100ms;
+  --duration-swift: 200ms;
+  --duration-smooth: 400ms;
+  --duration-flow: 600ms;
+  --duration-drift: 1000ms;
+  --duration-breathe: 2000ms;
+  --duration-ambient: 6000ms;
+
+  /* Easing Curves - physics-based motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Color Rhythm - gradient anchors */
+  --color-sunrise: #ff9a9e;
+  --color-blush: #fecfef;
+  --color-mint: #a8edea;
+  --color-coral: #ff6b6b;
+  --color-gold: #feca57;
+  --color-sky: #48dbfb;
+  --color-orchid: #ff9ff3;
+  --color-violet: #a855f7;
+  --color-deep-violet: #7c3aed;
+  --color-emerald: #22c55e;
+  --color-success: #4ade80;
+
+  /* Stagger delays for entrance choreography */
+  --stagger-1: 0ms;
+  --stagger-2: 60ms;
+  --stagger-3: 120ms;
+  --stagger-4: 180ms;
+  --stagger-5: 240ms;
+  --stagger-6: 300ms;
+}
+
+/* ============================================
+   BASE RESET
+   ============================================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ============================================
+   KEYFRAME ANIMATIONS - Unified motion language
+   ============================================ */
+
+/* Ambient floating - background elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Gentle breathing - logos, badges */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.95;
+  }
+}
+
+/* Entrance - fade up from below */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrance - fade in scale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Entrance - slide in from side */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Success celebration */
+@keyframes celebrate {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pulse ring - status indicators */
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Shimmer - subtle highlight pass */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Gradient flow - living gradients */
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ============================================
+   BODY & PAGE LAYOUT
+   ============================================ */
 body {
   font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a8edea 100%);
+  background: linear-gradient(135deg, var(--color-sunrise) 0%, var(--color-blush) 50%, var(--color-mint) 100%);
+  background-size: 200% 200%;
+  animation: gradientFlow var(--duration-ambient) var(--ease-in-out) infinite;
   min-height: 100vh;
   color: #333;
   line-height: 1.6;
@@ -14,99 +175,151 @@ body {
   overflow-x: hidden;
 }
 
-/* Fun floating circles background */
+/* Floating orbs - ambient depth */
 body::before,
 body::after {
   content: '';
   position: fixed;
   border-radius: 50%;
   z-index: -1;
-  opacity: 0.3;
+  opacity: 0.25;
+  filter: blur(1px);
 }
 
 body::before {
   width: 300px;
   height: 300px;
-  background: linear-gradient(135deg, #f6d365, #fda085);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-coral));
   top: -100px;
   right: -100px;
-  animation: float 6s ease-in-out infinite;
+  animation: float var(--duration-ambient) var(--ease-gentle) infinite;
 }
 
 body::after {
   width: 200px;
   height: 200px;
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  background: linear-gradient(135deg, var(--color-mint), var(--color-blush));
   bottom: -50px;
   left: -50px;
-  animation: float 8s ease-in-out infinite reverse;
+  animation: float calc(var(--duration-ambient) * 1.3) var(--ease-gentle) infinite reverse;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(10deg); }
-}
-
+/* ============================================
+   CONTAINER - Entrance choreography
+   ============================================ */
 .container {
   max-width: 500px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) both;
 }
 
-/* Header */
+/* ============================================
+   HERO IMAGE - Featured product shot
+   ============================================ */
+.hero-image {
+  text-align: center;
+  margin: 20px 0 0;
+  animation: fadeInScale var(--duration-flow) var(--ease-out) both;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 8px 25px rgba(0, 0, 0, 0.1);
+  transition:
+    transform var(--duration-smooth) var(--ease-out),
+    box-shadow var(--duration-smooth) var(--ease-out);
+}
+
+.hero-image img:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.18),
+    0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   HEADER - Logo & branding
+   ============================================ */
 header {
   text-align: center;
   margin-bottom: 2rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) var(--stagger-2) both;
 }
 
 .logo-circle {
   width: 240px;
   height: 240px;
-  background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+  background: linear-gradient(135deg, var(--color-coral), var(--color-gold), var(--color-sky), var(--color-orchid));
+  background-size: 300% 300%;
   border-radius: 50%;
   margin: 0 auto 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
-  animation: pulse 2s ease-in-out infinite;
+  box-shadow:
+    0 10px 40px rgba(255, 107, 107, 0.25),
+    0 0 0 0 rgba(255, 107, 107, 0.3);
+  animation:
+    breathe var(--duration-breathe) var(--ease-in-out) infinite,
+    gradientFlow calc(var(--duration-ambient) * 0.8) var(--ease-gentle) infinite;
+  transition:
+    transform var(--duration-smooth) var(--ease-spring),
+    box-shadow var(--duration-smooth) var(--ease-out);
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.logo-circle:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 16px 50px rgba(255, 107, 107, 0.35),
+    0 0 0 8px rgba(255, 107, 107, 0.1);
 }
 
 .logo-circle span {
   font-size: 3rem;
+  animation: fadeInScale var(--duration-smooth) var(--ease-out) var(--stagger-4) both;
 }
 
 header h1 {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff6b6b, #a855f7);
+  background: linear-gradient(135deg, var(--color-coral), var(--color-violet));
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 0.25rem;
   letter-spacing: -1px;
   font-weight: 700;
+  animation:
+    fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-3) both,
+    gradientFlow var(--duration-ambient) var(--ease-gentle) infinite;
 }
 
 .tagline {
-  color: #7c3aed;
+  color: var(--color-deep-violet);
   font-size: 1.1rem;
   font-weight: 500;
+  opacity: 0;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-4) forwards;
 }
 
-/* Status Section */
+/* ============================================
+   STATUS SECTION - Availability states
+   ============================================ */
 .status-section {
   text-align: center;
   margin-bottom: 2rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) var(--stagger-3) both;
 }
 
 .loading {
   color: #666;
   font-style: italic;
+  animation: breathe var(--duration-breathe) var(--ease-in-out) infinite;
 }
 
 .status-badge {
@@ -116,42 +329,72 @@ header h1 {
   font-weight: bold;
   font-size: 1.25rem;
   margin-bottom: 1rem;
+  animation: fadeInScale var(--duration-smooth) var(--ease-spring) both;
+  transition: transform var(--duration-swift) var(--ease-spring);
+}
+
+.status-badge:hover {
+  transform: scale(1.03);
 }
 
 .available-badge {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+  background: linear-gradient(135deg, var(--color-emerald), var(--color-success));
   color: white;
-  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
-  animation: bounce 1s ease-in-out;
+  box-shadow:
+    0 8px 25px rgba(34, 197, 94, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Pulse ring behind available badge */
+.available-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: inherit;
+  z-index: -1;
+  animation: pulseRing var(--duration-breathe) var(--ease-out) infinite;
 }
 
 .unavailable-badge {
-  background: linear-gradient(135deg, #f472b6, #a855f7);
+  background: linear-gradient(135deg, var(--color-orchid), var(--color-violet));
   color: white;
-  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
 }
 
 .status p {
   color: #555;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-5) both;
 }
 
-/* Subscribe Section */
+/* ============================================
+   SUBSCRIBE SECTION
+   ============================================ */
 .subscribe-section {
   background: white;
   padding: 2rem;
   border-radius: 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
   text-align: center;
   margin-top: 1.5rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) var(--stagger-4) both;
+  transition:
+    transform var(--duration-smooth) var(--ease-out),
+    box-shadow var(--duration-smooth) var(--ease-out);
+}
+
+.subscribe-section:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .subscribe-section h3 {
-  color: #7c3aed;
+  color: var(--color-deep-violet);
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
 }
@@ -173,47 +416,76 @@ header h1 {
   border: 2px solid #e9d5ff;
   border-radius: 50px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  transition:
+    border-color var(--duration-swift) var(--ease-out),
+    box-shadow var(--duration-swift) var(--ease-out),
+    transform var(--duration-swift) var(--ease-out);
 }
 
 .subscribe-form input:focus {
   outline: none;
-  border-color: #a855f7;
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+  transform: scale(1.01);
 }
 
 .subscribe-btn {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #f472b6, #a855f7);
+  background: linear-gradient(135deg, var(--color-orchid), var(--color-violet));
+  background-size: 200% 200%;
   color: white;
   border: none;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform var(--duration-swift) var(--ease-spring),
+    box-shadow var(--duration-swift) var(--ease-out);
 }
 
 .subscribe-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+  animation: gradientFlow var(--duration-drift) var(--ease-gentle) infinite;
+}
+
+.subscribe-btn:active {
+  transform: scale(0.98);
 }
 
 .subscribe-success {
-  color: #22c55e;
+  color: var(--color-emerald);
   font-weight: 600;
+  animation: fadeInScale var(--duration-smooth) var(--ease-spring) both;
 }
 
-/* Order Form */
+/* ============================================
+   ORDER FORM - Clean, inviting
+   ============================================ */
 .order-form {
   background: white;
   padding: 2rem;
   border-radius: 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp var(--duration-flow) var(--ease-out) var(--stagger-4) both;
+  transition:
+    transform var(--duration-smooth) var(--ease-out),
+    box-shadow var(--duration-smooth) var(--ease-out);
+}
+
+.order-form:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .order-form h2 {
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #ff6b6b, #a855f7);
+  background: linear-gradient(135deg, var(--color-coral), var(--color-violet));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -223,13 +495,27 @@ header h1 {
 
 .form-group {
   margin-bottom: 1.25rem;
+  animation: slideIn var(--duration-smooth) var(--ease-out) both;
 }
+
+/* Stagger form groups */
+.form-group:nth-child(1) { animation-delay: var(--stagger-1); }
+.form-group:nth-child(2) { animation-delay: var(--stagger-2); }
+.form-group:nth-child(3) { animation-delay: var(--stagger-3); }
+.form-group:nth-child(4) { animation-delay: var(--stagger-4); }
+.form-group:nth-child(5) { animation-delay: var(--stagger-5); }
+.form-group:nth-child(6) { animation-delay: var(--stagger-6); }
 
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #7c3aed;
+  color: var(--color-deep-violet);
+  transition: color var(--duration-swift) var(--ease-out);
+}
+
+.form-group:focus-within label {
+  color: var(--color-violet);
 }
 
 .form-group input,
@@ -239,33 +525,63 @@ header h1 {
   border: 2px solid #e9d5ff;
   border-radius: 15px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  font-family: inherit;
+  transition:
+    border-color var(--duration-swift) var(--ease-out),
+    box-shadow var(--duration-swift) var(--ease-out),
+    transform var(--duration-swift) var(--ease-out);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #a855f7;
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.12);
+  transform: scale(1.01);
 }
 
 .submit-btn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #ff6b6b, #feca57);
+  background: linear-gradient(135deg, var(--color-coral), var(--color-gold));
+  background-size: 200% 200%;
   color: white;
   border: none;
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--duration-swift) var(--ease-spring),
+    box-shadow var(--duration-swift) var(--ease-out);
+}
+
+/* Shimmer effect on button */
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s var(--ease-gentle) infinite;
 }
 
 .submit-btn:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+  animation: gradientFlow var(--duration-drift) var(--ease-gentle) infinite;
 }
 
 .submit-btn:active {
@@ -276,21 +592,29 @@ header h1 {
   background: #ccc;
   cursor: not-allowed;
   transform: none;
+  animation: none;
 }
 
-/* Success Message */
+.submit-btn:disabled::before {
+  animation: none;
+}
+
+/* ============================================
+   SUCCESS MESSAGE - Celebration
+   ============================================ */
 .success-message {
   text-align: center;
   background: white;
   padding: 3rem 2rem;
   border-radius: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeInScale var(--duration-flow) var(--ease-spring) both;
 }
 
 .success-icon {
   width: 100px;
   height: 100px;
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+  background: linear-gradient(135deg, var(--color-emerald), var(--color-success));
   color: white;
   font-size: 3rem;
   border-radius: 50%;
@@ -299,19 +623,28 @@ header h1 {
   justify-content: center;
   margin: 0 auto 1.5rem;
   box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+  animation: celebrate var(--duration-flow) var(--ease-spring) both;
 }
 
 .success-message h2 {
-  color: #22c55e;
+  color: var(--color-emerald);
   margin-bottom: 0.5rem;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-3) both;
 }
 
 .success-message p {
   color: #555;
   margin-bottom: 1.5rem;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-4) both;
 }
 
-/* Error Message */
+.success-message .submit-btn {
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-5) both;
+}
+
+/* ============================================
+   ERROR MESSAGE
+   ============================================ */
 .error-message {
   background: #fef2f2;
   border: 2px solid #fecaca;
@@ -320,49 +653,145 @@ header h1 {
   border-radius: 15px;
   text-align: center;
   margin-top: 1rem;
+  animation: fadeInScale var(--duration-smooth) var(--ease-out) both;
 }
 
-/* Footer */
+/* ============================================
+   FOOTER - Minimal, elegant
+   ============================================ */
 footer {
   text-align: center;
   margin-top: 3rem;
-  color: #a855f7;
+  color: var(--color-violet);
   font-size: 0.9rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) var(--stagger-6) both;
 }
 
-/* Decorative circles */
+footer a {
+  color: var(--color-deep-violet);
+  text-decoration: none;
+  transition:
+    color var(--duration-swift) var(--ease-out),
+    transform var(--duration-swift) var(--ease-out);
+  display: inline-block;
+}
+
+footer a:hover {
+  color: var(--color-coral);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   DECORATIVE CIRCLES - Depth layers
+   ============================================ */
 .deco-circle {
   position: fixed;
   border-radius: 50%;
   z-index: -1;
   opacity: 0.2;
+  filter: blur(0.5px);
 }
 
 .deco-circle-1 {
   width: 150px;
   height: 150px;
-  background: #feca57;
+  background: var(--color-gold);
   top: 20%;
   left: -75px;
+  animation: float var(--duration-ambient) var(--ease-gentle) infinite;
 }
 
 .deco-circle-2 {
   width: 100px;
   height: 100px;
-  background: #48dbfb;
+  background: var(--color-sky);
   top: 60%;
   right: -50px;
+  animation: float calc(var(--duration-ambient) * 1.2) var(--ease-gentle) infinite 1s;
 }
 
 .deco-circle-3 {
   width: 80px;
   height: 80px;
-  background: #ff9ff3;
+  background: var(--color-orchid);
   bottom: 20%;
   left: 10%;
+  animation: float calc(var(--duration-ambient) * 0.9) var(--ease-gentle) infinite 0.5s;
 }
 
-/* Admin Page Styles */
+/* ============================================
+   CONTENT SECTIONS - About page
+   ============================================ */
+.content-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) both;
+  transition:
+    transform var(--duration-smooth) var(--ease-out),
+    box-shadow var(--duration-smooth) var(--ease-out);
+}
+
+.content-section:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Stagger content sections */
+.content-section:nth-child(1) { animation-delay: 0ms; }
+.content-section:nth-child(2) { animation-delay: 100ms; }
+.content-section:nth-child(3) { animation-delay: 200ms; }
+
+.content-section h2 {
+  background: linear-gradient(135deg, var(--color-coral), var(--color-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.content-section h3 {
+  color: var(--color-deep-violet);
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.content-section p {
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.content-section ul {
+  color: #555;
+  padding-left: 1.5rem;
+}
+
+.content-section li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.content-section a {
+  color: var(--color-deep-violet);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-swift) var(--ease-out);
+}
+
+.content-section a:hover {
+  border-color: var(--color-deep-violet);
+}
+
+/* ============================================
+   ADMIN PAGE STYLES
+   ============================================ */
 .admin-container {
   max-width: 400px;
 }
@@ -373,11 +802,12 @@ footer {
   border-radius: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
+  animation: fadeInUp var(--duration-flow) var(--ease-out) both;
 }
 
 .admin-card h2 {
   margin-bottom: 1.5rem;
-  color: #7c3aed;
+  color: var(--color-deep-violet);
 }
 
 .toggle-container {
@@ -391,22 +821,35 @@ footer {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    transform var(--duration-swift) var(--ease-spring),
+    box-shadow var(--duration-swift) var(--ease-out);
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.toggle-btn:active {
+  transform: scale(0.98);
 }
 
 .toggle-btn.make-available {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+  background: linear-gradient(135deg, var(--color-emerald), var(--color-success));
   color: white;
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
 }
 
 .toggle-btn.make-unavailable {
-  background: linear-gradient(135deg, #f472b6, #a855f7);
+  background: linear-gradient(135deg, var(--color-orchid), var(--color-violet));
   color: white;
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
 }
 
 .current-status {
   font-size: 1.25rem;
   margin-bottom: 1rem;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-2) both;
 }
 
 .status-dot {
@@ -415,19 +858,37 @@ footer {
   height: 14px;
   border-radius: 50%;
   margin-right: 8px;
+  position: relative;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing var(--duration-breathe) var(--ease-out) infinite;
 }
 
 .status-dot.available {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+  background: linear-gradient(135deg, var(--color-emerald), var(--color-success));
+}
+
+.status-dot.available::after {
+  background: var(--color-emerald);
 }
 
 .status-dot.unavailable {
-  background: linear-gradient(135deg, #f472b6, #a855f7);
+  background: linear-gradient(135deg, var(--color-orchid), var(--color-violet));
+}
+
+.status-dot.unavailable::after {
+  background: var(--color-orchid);
 }
 
 /* Login form */
 .login-form {
   margin-bottom: 1rem;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-3) both;
 }
 
 .login-form input {
@@ -437,23 +898,41 @@ footer {
   border-radius: 50px;
   font-size: 1rem;
   margin-bottom: 1rem;
+  transition:
+    border-color var(--duration-swift) var(--ease-out),
+    box-shadow var(--duration-swift) var(--ease-out);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
 }
 
 .login-btn {
   width: 100%;
   padding: 0.75rem;
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, var(--color-violet), var(--color-deep-violet));
   color: white;
   border: none;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition:
+    transform var(--duration-swift) var(--ease-spring),
+    box-shadow var(--duration-swift) var(--ease-out);
+}
+
+.login-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
 }
 
 .login-error {
   color: #dc2626;
   margin-top: 0.5rem;
+  animation: fadeInScale var(--duration-swift) var(--ease-out) both;
 }
 
 /* Subscribers list */
@@ -469,10 +948,19 @@ footer {
   border-radius: 10px;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
-  color: #7c3aed;
+  color: var(--color-deep-violet);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: slideIn var(--duration-smooth) var(--ease-out) both;
+  transition:
+    transform var(--duration-swift) var(--ease-out),
+    box-shadow var(--duration-swift) var(--ease-out);
+}
+
+.subscriber-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
 }
 
 .delete-subscriber {
@@ -483,13 +971,45 @@ footer {
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
-  transition: background 0.2s;
+  transition:
+    background var(--duration-swift) var(--ease-out),
+    transform var(--duration-swift) var(--ease-out);
 }
 
 .delete-subscriber:hover {
   background: #fee2e2;
+  transform: scale(1.1);
 }
 
 #subscribers-section {
   margin-top: 1.5rem;
+  animation: fadeInUp var(--duration-smooth) var(--ease-out) var(--stagger-4) both;
+}
+
+/* ============================================
+   ACCESSIBILITY - Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   UTILITY - Screen reader only
+   ============================================ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
